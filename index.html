@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart!</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <form onsubmit="event.preventDefault(); shoppincart();" class="box">
+        <h1>Shopping Cart</h1>
+        <label>Price of Item 1: </label>
+        <br>
+        <input type="number" id="priceItem1" required>
+        <br><br>
+        
+        <label>Quantity of Item 1: </label>
+        <br>
+        <input type="number" id="quantityItem1" required>
+        <br><br>
+
+        <label>Price of Item 2: </label>
+        <br>
+        <input type="number" id="priceItem2" required>
+        <br><br>
+
+        <label>Quantity of Item 2: </label>
+        <br>
+        <input type="number" id="quantityItem2" required><br><br>
+
+        <label>Shipping Charges: </label>
+        <br>
+        <input type="number" id="shippingCharges" required><br><br>
+
+        <button>Receipt Generate</button>
+        <div id="receipt"></div>
+    </form>
+    
+
+    <script>
+        function shoppincart() {
+            // Getting input from the user through form inputs
+            let priceItem1 = parseFloat(document.getElementById('priceItem1').value);
+            let priceItem2 = parseFloat(document.getElementById('priceItem2').value);
+            let quantityItem1 = parseInt(document.getElementById('quantityItem1').value);
+            let quantityItem2 = parseInt(document.getElementById('quantityItem2').value);
+            let shippingCharges = parseFloat(document.getElementById('shippingCharges').value);
+
+            // Calculating total cost
+            let totalCostItem1 = priceItem1 * quantityItem1;
+            let totalCostItem2 = priceItem2 * quantityItem2;
+            let totalCost = totalCostItem1 + totalCostItem2 + shippingCharges;
+
+            // Displaying receipt
+            document.getElementById('receipt').innerHTML = `
+                <h2><u>Receipt</u></h2>
+                <p>Price of Item 1: $${totalCostItem1}</p>
+                <p>Price of Item 2: $${totalCostItem2}</p>
+                <p>Shipping Charges: $${shippingCharges}</p>
+                <h3>Total Cost: $${totalCost}</h3>
+            `;
+        }
+    </script>
+</body>
+</html>
